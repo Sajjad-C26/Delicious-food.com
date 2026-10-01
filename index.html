@@ -375,7 +375,7 @@
         <button class="close-sidebar" onclick="closeMenuSidebar()">&times;</button>
         <h2>Our Gourmet Menu</h2>
         <ul class="menu-links-list">
-            <li><a href="#" onclick="loadCategory('Sambar Idli Variants', 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80')">1. Sambar Idli Specials</a></li>
+            <li><a href="#" onclick="loadCategory('Sambar Idli Specials', 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80')">1. Sambar Idli Specials</a></li>
             <li><a href="#" onclick="loadCategory('Podi Idli Specials', 'https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=1920&q=80')">2. Podi Idli Specials</a></li>
             <li><a href="#" onclick="loadCategory('Royal Bowl’d Collection', 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1920&q=80')">3. Royal Bowl’d Collection</a></li>
             <li><a href="#" onclick="loadCategory('Dunk’d Delicacies', 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1920&q=80')">4. Dunk’d Delicacies</a></li>
@@ -385,7 +385,7 @@
     </div>
 
     <script>
-        // Array of 20 guaranteed robust aesthetic food image links
+        // Exactly 10 guaranteed robust aesthetic food image links matching the 10 items limit
         const aestheticImages = [
             "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=600&q=80",
@@ -396,23 +396,21 @@
             "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1565310022184-f23a992f555b?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
+            "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80"
         ];
 
+        // Exactly 10 unique dish names
         const dishTypes = [
-            "Royal Sensation", "Artisanal Delight", "Signature Special", "Classic Supreme", "Spicy Fusion", 
-            "Tandoori Flavor", "Butter Glazed", "Herbed Special", "Cheesy Grand", "Golden Crispy",
-            "Exotic Feast", "Chef's Choice", "Mughlai Royal", "Zesty Flavour", "Urban Spice"
+            "Royal Sensation", 
+            "Artisanal Delight", 
+            "Signature Special", 
+            "Classic Supreme", 
+            "Spicy Fusion", 
+            "Tandoori Flavor", 
+            "Butter Glazed", 
+            "Herbed Special", 
+            "Cheesy Grand", 
+            "Golden Crispy"
         ];
 
         function openMenuSidebar() {
@@ -443,15 +441,15 @@
                 <div class="category-container">
                     <button class="back-home-btn" onclick="goHome()">&larr; Back to Home</button>
                     <h2 class="category-title">${categoryName}</h2>
-                    <p class="category-subtitle">Explore our exclusive collection of 15 freshly prepared artisanal variants.</p>
+                    <p class="category-subtitle">Explore our exclusive collection of 10 freshly prepared artisanal variants.</p>
                     <div class="food-grid">
             `;
 
-            // Exactly 15 items per category so images never run out or break
-            for (let i = 1; i <= 15; i++) {
-                let price = 180 + ((i * 37) % 450);
-                let dishName = dishTypes[(i - 1) % dishTypes.length];
-                let imgLink = aestheticImages[(i - 1) % aestheticImages.length];
+            // Exactly 10 items per category so every single item has a dedicated valid image and name
+            for (let i = 1; i <= 10; i++) {
+                let price = 180 + ((i * 45) % 400);
+                let dishName = dishTypes[i - 1];
+                let imgLink = aestheticImages[i - 1];
                 
                 html += `
                     <div class="food-card">
