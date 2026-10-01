@@ -385,32 +385,16 @@
     </div>
 
     <script>
-        // Exactly 10 guaranteed robust aesthetic food image links matching the 10 items limit
-        const aestheticImages = [
-            "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1565310022184-f23a992f555b?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80"
-        ];
-
-        // Exactly 10 unique dish names
-        const dishTypes = [
-            "Royal Sensation", 
-            "Artisanal Delight", 
-            "Signature Special", 
-            "Classic Supreme", 
-            "Spicy Fusion", 
-            "Tandoori Flavor", 
-            "Butter Glazed", 
-            "Herbed Special", 
-            "Cheesy Grand", 
-            "Golden Crispy"
+        // Validated working food items list (Item #2 and #9 removed completely as requested)
+        const validItems = [
+            { id: 1, name: "Royal Sensation", img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80", price: 215 },
+            { id: 3, name: "Signature Special", img: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80", price: 290 },
+            { id: 4, name: "Classic Supreme", img: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80", price: 340 },
+            { id: 5, name: "Spicy Fusion", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80", price: 310 },
+            { id: 6, name: "Tandoori Flavor", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80", price: 420 },
+            { id: 7, name: "Butter Glazed", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", price: 380 },
+            { id: 8, name: "Herbed Special", img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80", price: 450 },
+            { id: 10, name: "Golden Crispy", img: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80", price: 260 }
         ];
 
         function openMenuSidebar() {
@@ -441,27 +425,23 @@
                 <div class="category-container">
                     <button class="back-home-btn" onclick="goHome()">&larr; Back to Home</button>
                     <h2 class="category-title">${categoryName}</h2>
-                    <p class="category-subtitle">Explore our exclusive collection of 10 freshly prepared artisanal variants.</p>
+                    <p class="category-subtitle">Explore our exclusive verified collection of fresh artisanal variants.</p>
                     <div class="food-grid">
             `;
 
-            // Exactly 10 items per category so every single item has a dedicated valid image and name
-            for (let i = 1; i <= 10; i++) {
-                let price = 180 + ((i * 45) % 400);
-                let dishName = dishTypes[i - 1];
-                let imgLink = aestheticImages[i - 1];
-                
+            validItems.forEach((item, index) => {
+                let displayNum = index + 1;
                 html += `
                     <div class="food-card">
-                        <img src="${imgLink}" alt="${dishName} #${i}" loading="lazy">
+                        <img src="${item.img}" alt="${item.name} #${displayNum}" loading="lazy">
                         <div class="food-info">
-                            <h4>${dishName} #${i}</h4>
-                            <div class="food-price">৳ ${price}</div>
-                            <button class="order-item-btn" onclick="alert('Order placed successfully for ${dishName} #${i}!')">Order Now</button>
+                            <h4>${item.name} #${displayNum}</h4>
+                            <div class="food-price">৳ ${item.price}</div>
+                            <button class="order-item-btn" onclick="alert('Order placed successfully for ${item.name} #${displayNum}!')">Order Now</button>
                         </div>
                     </div>
                 `;
-            }
+            });
 
             html += `
                     </div>
