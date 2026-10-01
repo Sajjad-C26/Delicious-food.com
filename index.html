@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Idlies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 10px;
+            font-style: normal;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #d1d1d1;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #ff7b00;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .order-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            margin-top: 10px;
+            border-bottom: 1px solid #ff7b00;
+            padding-bottom: 4px;
+            transition: color 0.3s;
+        }
+
+        .order-btn:hover {
+            color: #ff7b00;
+        }
+
+        .hero-footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .watch-story {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-down {
+            color: #aaa;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Menu Grid Section (Like your 2nd image) */
+        .menu-section {
+            padding: 80px 20px;
+            background: #111;
+            position: relative;
+        }
+
+        .menu-section h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-box {
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Dynamic background colors matching your image */
+        .card-1 .card-img-box { background-color: #008b8b; }
+        .card-2 .card-img-box { background-color: #e6b800; }
+        .card-3 .card-img-box { background-color: #b30059; }
+        .card-4 .card-img-box { background-color: #5c3a21; }
+        .card-5 .card-img-box { background-color: #006666; }
+        .card-6 .card-img-box { background-color: #e69500; }
+
+        .card-img-box img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+
+        .menu-card h3 {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments for phones */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            nav ul {
+                display: none; /* Can be expanded with a hamburger menu later */
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero-footer {
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+                bottom: 0;
+                margin-top: 50px;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span>House of</span> Idlies
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Idlies</a></li>
+                <li><a href="#">Bowl'd</a></li>
+                <li><a href="#">Dunk'd</a></li>
+                <li><a href="#">Dailee Sides</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Matka Thayir Sadham</h1>
+        <a href="#" class="order-btn">Order Now &rarr;</a>
+
+        <div class="hero-footer">
+            <a href="#" class="watch-story">▶ Watch Our Story</a>
+            <div class="scroll-down">
+                <span>scroll to explore</span>
+            </div>
+            <div class="social-icons">
+                <a href="#">📷</a>
+                <a href="#">📘</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section (Product Grid) -->
+    <section class="menu-section">
+        <h2>Our Special Menu</h2>
+        <div class="menu-grid">
+            <!-- Card 1 -->
+            <div class="menu-card card-1">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80" alt="Sambar Idli">
+                </div>
+                <h3>Sambar Idli</h3>
+            </div>
+            <!-- Card 2 -->
+            <div class="menu-card card-2">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=400&q=80" alt="Podi Idli">
+                </div>
+                <h3>Podi Idli (Karuveppillai)</h3>
+            </div>
+            <!-- Card 3 -->
+            <div class="menu-card card-3">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80" alt="Empty Salna Idli">
+                </div>
+                <h3>Empty Salna Idli</h3>
+            </div>
+            <!-- Card 4 -->
+            <div class="menu-card card-4">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80" alt="Railway Chuntey Idli">
+                </div>
+                <h3>Railway Chuntey Idli</h3>
+            </div>
+            <!-- Card 5 -->
+            <div class="menu-card card-5">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80" alt="Podi Idli Milagai">
+                </div>
+                <h3>Podi Idli (Milagai)</h3>
+            </div>
+            <!-- Card 6 -->
+            <div class="menu-card card-6">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="Morkuzhambu Idli">
+                </div>
+                <h3>Morkuzhambu Idli</h3>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
