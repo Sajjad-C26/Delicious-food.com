@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House of Idlies</title>
+    <title>Delicious Food - Restaurant</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -19,298 +19,436 @@
             overflow-x: hidden;
         }
 
+        /* Views management */
+        .view {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .view.active-view {
+            display: block;
+            opacity: 1;
+            position: relative;
+        }
+
         /* Header / Navbar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 20px 25px;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo-box {
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             color: #fff;
             line-height: 1;
         }
 
-        .logo span {
-            display: block;
-            font-size: 10px;
-            font-style: normal;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ccc;
+        .sub-email {
+            font-size: 11px;
+            color: #ffb703;
+            letter-spacing: 1px;
+            margin-top: 4px;
         }
 
-        nav ul {
+        .header-right {
             display: flex;
-            list-style: none;
-            gap: 30px;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
         }
 
-        nav ul li a {
+        .brand-tag {
+            font-size: 13px;
+            font-weight: 500;
+            color: #ff4d4d;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-order-btn {
+            background: #ff7b00;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 12px;
             text-decoration: none;
-            color: #d1d1d1;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(255,123,0,0.4);
+        }
+
+        /* Aesthetic Left Menu Sidebar / Toggle */
+        .menu-toggle-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 30px;
+            background: linear-gradient(135deg, #ff4d4d, #b30000);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
             font-size: 14px;
-            transition: color 0.3s;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            letter-spacing: 1px;
         }
 
-        nav ul li a:hover, nav ul li a.active {
-            color: #ff7b00;
-        }
-
-        /* Hero Section */
+        /* Home Page Hero */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
             padding: 0 20px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 56px;
+            font-size: 42px;
             margin-bottom: 15px;
             font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .order-btn {
+        .hero p {
+            color: #ddd;
+            font-size: 15px;
+            max-width: 500px;
+            margin-bottom: 25px;
+        }
+
+        .main-order-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            background: #ff7b00;
             color: #fff;
             text-decoration: none;
-            font-size: 15px;
-            margin-top: 10px;
-            border-bottom: 1px solid #ff7b00;
-            padding-bottom: 4px;
+            font-size: 14px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(255,123,0,0.3);
+        }
+
+        /* Aesthetic Menu List Overlay / Page */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.4s ease;
+        }
+
+        .sidebar-menu.open {
+            left: 0;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 28px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sidebar-menu h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #ff4d4d;
+            border-bottom: 2px solid #ff4d4d;
+            padding-bottom: 5px;
+        }
+
+        .menu-links-list {
+            list-style: none;
+            text-align: center;
+            max-height: 70vh;
+            overflow-y: auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .menu-links-list li {
+            margin: 18px 0;
+        }
+
+        .menu-links-list li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-family: 'Playfair Display', serif;
             transition: color 0.3s;
         }
 
-        .order-btn:hover {
+        .menu-links-list li a:hover {
             color: #ff7b00;
         }
 
-        .hero-footer {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 40px;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        .watch-story {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .scroll-down {
-            color: #aaa;
-            text-align: center;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        /* Menu Grid Section (Like your 2nd image) */
-        .menu-section {
-            padding: 80px 20px;
-            background: #111;
+        /* Category Details View (50+ items layout) */
+        .category-view {
+            min-height: 100vh;
+            padding: 90px 20px 40px 20px;
+            background-size: cover;
+            background-position: center;
             position: relative;
         }
 
-        .menu-section h2 {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 40px;
-            margin-bottom: 50px;
+        .category-view::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 1;
         }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .category-container {
+            position: relative;
+            z-index: 2;
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        .menu-card {
-            background: #1a1a1a;
-            border-radius: 8px;
+        .back-home-btn {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #ffb703;
+        }
+
+        .category-subtitle {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .food-card {
+            background: rgba(25, 25, 25, 0.85);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
             overflow: hidden;
-            text-align: center;
-            padding-bottom: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-img-box {
-            height: 250px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Dynamic background colors matching your image */
-        .card-1 .card-img-box { background-color: #008b8b; }
-        .card-2 .card-img-box { background-color: #e6b800; }
-        .card-3 .card-img-box { background-color: #b30059; }
-        .card-4 .card-img-box { background-color: #5c3a21; }
-        .card-5 .card-img-box { background-color: #006666; }
-        .card-6 .card-img-box { background-color: #e69500; }
-
-        .card-img-box img {
-            width: 160px;
+        .food-card img {
+            width: 100%;
             height: 160px;
-            border-radius: 50%;
             object-fit: cover;
-            border: 4px solid rgba(255,255,255,0.2);
         }
 
-        .menu-card h3 {
-            font-size: 18px;
-            margin-top: 20px;
+        .food-info {
+            padding: 15px;
+        }
+
+        .food-info h4 {
+            font-size: 16px;
+            margin-bottom: 6px;
             font-weight: 500;
         }
 
-        /* Responsive adjustments for phones */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            nav ul {
-                display: none; /* Can be expanded with a hamburger menu later */
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero-footer {
-                flex-direction: column;
-                gap: 15px;
-                position: relative;
-                bottom: 0;
-                margin-top: 50px;
-                padding: 0;
-            }
+        .food-price {
+            color: #ff7b00;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .order-item-btn {
+            width: 100%;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .order-item-btn:hover {
+            background: #e60000;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <span>House of</span> Idlies
+    <!-- HOME PAGE VIEW -->
+    <div id="home-view" class="view active-view">
+        <header>
+            <div class="logo-box">
+                <div class="logo">Idlies</div>
+                <div class="sub-email">Delicious@food.com</div>
+            </div>
+            <div class="header-right">
+                <div class="brand-tag">Delicious food</div>
+                <a href="#" class="header-order-btn" onclick="openMenuSidebar()">Order Now</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <h1>Matka Thayir Sadham</h1>
+            <p>Experience the authentic taste of traditional royal cuisine crafted with passion and premium ingredients.</p>
+            <a href="#" class="main-order-btn" onclick="openMenuSidebar()">Explore Menu &rarr;</a>
+        </section>
+    </div>
+
+    <!-- DYNAMIC CATEGORY VIEW (Will load 50+ items based on selection) -->
+    <div id="category-view" class="view">
+        <header>
+            <div class="logo-box">
+                <div class="logo">Idlies</div>
+                <div class="sub-email">Delicious@food.com</div>
+            </div>
+            <div class="header-right">
+                <div class="brand-tag">Delicious food</div>
+                <a href="#" class="header-order-btn" onclick="goHome()">Home</a>
+            </div>
+        </header>
+
+        <div id="category-content" class="category-view">
+            <!-- Content injected dynamically via JS -->
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Idlies</a></li>
-                <li><a href="#">Bowl'd</a></li>
-                <li><a href="#">Dunk'd</a></li>
-                <li><a href="#">Dailee Sides</a></li>
-            </ul>
-        </nav>
-    </header>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Matka Thayir Sadham</h1>
-        <a href="#" class="order-btn">Order Now &rarr;</a>
+    <!-- AESTHETIC LEFT MENU SIDEBAR -->
+    <button class="menu-toggle-btn" onclick="openMenuSidebar()">☰ Menu</button>
 
-        <div class="hero-footer">
-            <a href="#" class="watch-story">▶ Watch Our Story</a>
-            <div class="scroll-down">
-                <span>scroll to explore</span>
-            </div>
-            <div class="social-icons">
-                <a href="#">📷</a>
-                <a href="#">📘</a>
-            </div>
-        </div>
-    </section>
+    <div id="sidebar-menu" class="sidebar-menu">
+        <button class="close-sidebar" onclick="closeMenuSidebar()">&times;</button>
+        <h2>Our Gourmet Menu</h2>
+        <ul class="menu-links-list">
+            <li><a href="#" onclick="loadCategory('Sambar Idli Variants', 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80')">1. Sambar Idli (50+ Variants)</a></li>
+            <li><a href="#" onclick="loadCategory('Podi Idli Specials', 'https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=1920&q=80')">2. Podi Idli Specials (50+ Variants)</a></li>
+            <li><a href="#" onclick="loadCategory('Royal Bowl’d Collection', 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1920&q=80')">3. Royal Bowl’d Collection</a></li>
+            <li><a href="#" onclick="loadCategory('Dunk’d Delicacies', 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1920&q=80')">4. Dunk’d Delicacies</a></li>
+            <li><a href="#" onclick="loadCategory('Dailee Sides & Mutton', 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1920&q=80')">5. Dailee Sides & Extras</a></li>
+            <li><a href="#" onclick="loadCategory('Traditional Matka Rice', 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1920&q=80')">6. Traditional Matka Rice</a></li>
+        </ul>
+    </div>
 
-    <!-- Menu Section (Product Grid) -->
-    <section class="menu-section">
-        <h2>Our Special Menu</h2>
-        <div class="menu-grid">
-            <!-- Card 1 -->
-            <div class="menu-card card-1">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80" alt="Sambar Idli">
-                </div>
-                <h3>Sambar Idli</h3>
-            </div>
-            <!-- Card 2 -->
-            <div class="menu-card card-2">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=400&q=80" alt="Podi Idli">
-                </div>
-                <h3>Podi Idli (Karuveppillai)</h3>
-            </div>
-            <!-- Card 3 -->
-            <div class="menu-card card-3">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80" alt="Empty Salna Idli">
-                </div>
-                <h3>Empty Salna Idli</h3>
-            </div>
-            <!-- Card 4 -->
-            <div class="menu-card card-4">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80" alt="Railway Chuntey Idli">
-                </div>
-                <h3>Railway Chuntey Idli</h3>
-            </div>
-            <!-- Card 5 -->
-            <div class="menu-card card-5">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80" alt="Podi Idli Milagai">
-                </div>
-                <h3>Podi Idli (Milagai)</h3>
-            </div>
-            <!-- Card 6 -->
-            <div class="menu-card card-6">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="Morkuzhambu Idli">
-                </div>
-                <h3>Morkuzhambu Idli</h3>
-            </div>
-        </div>
-    </section>
+    <script>
+        function openMenuSidebar() {
+            document.getElementById('sidebar-menu').classList.add('open');
+        }
 
+        function closeMenuSidebar() {
+            document.getElementById('sidebar-menu').classList.remove('open');
+        }
+
+        function goHome() {
+            document.getElementById('category-view').classList.remove('active-view');
+            document.getElementById('home-view').classList.add('active-view');
+            window.scrollTo(0,0);
+        }
+
+        // Generates 50+ aesthetic items dynamically with distinct names & prices
+        function loadCategory(categoryName, bgImage) {
+            closeMenuSidebar();
+            
+            document.getElementById('home-view').classList.remove('active-view');
+            const catView = document.getElementById('category-view');
+            catView.classList.add('active-view');
+
+            const contentDiv = document.getElementById('category-content');
+            contentDiv.style.backgroundImage = `url('${bgImage}')`;
+
+            let html = `
+                <div class="category-container">
+                    <button class="back-home-btn" onclick="goHome()">&larr; Back to Home</button>
+                    <h2 class="category-title">${categoryName}</h2>
+                    <p class="category-subtitle">Explore our exclusive collection of over 50 freshly prepared artisanal variants.</p>
+                    <div class="food-grid">
+            `;
+
+            // Generating 50 distinct items programmatically
+            for (let i = 1; i <= 50; i++) {
+                let price = (120 + (i * 15)) % 650 + 150;
+                let dishNames = ["Signature", "Royal", "Classic", "Spicy Fusion", "Tandoori Twist", "Butter Glazed", "Herbed Special", "Cheesy Delight"];
+                let namePrefix = dishNames[i % dishNames.length];
+                
+                html += `
+                    <div class="food-card">
+                        <img src="${bgImage}" alt="Food Item">
+                        <div class="food-info">
+                            <h4>${namePrefix} Item #${i}</h4>
+                            <div class="food-price">৳ ${price}</div>
+                            <button class="order-item-btn" onclick="alert('Order placed successfully for ${namePrefix} Item #${i}!')">Order Now</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += `
+                    </div>
+                </div>
+            `;
+
+            contentDiv.innerHTML = html;
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
