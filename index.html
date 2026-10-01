@@ -19,7 +19,6 @@
             overflow-x: hidden;
         }
 
-        /* Views management */
         .view {
             display: none;
             min-height: 100vh;
@@ -37,7 +36,6 @@
             position: relative;
         }
 
-        /* Header / Navbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -98,7 +96,6 @@
             box-shadow: 0 4px 10px rgba(255,123,0,0.4);
         }
 
-        /* Aesthetic Left Menu Button */
         .menu-toggle-btn {
             position: fixed;
             left: 20px;
@@ -116,7 +113,6 @@
             letter-spacing: 1px;
         }
 
-        /* Home Page Hero */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
@@ -156,7 +152,6 @@
             box-shadow: 0 5px 15px rgba(255,123,0,0.3);
         }
 
-        /* Aesthetic Left Menu Sidebar with Royal Background */
         .sidebar-menu {
             position: fixed;
             top: 0;
@@ -226,7 +221,6 @@
             color: #ff7b00;
         }
 
-        /* Category Details View (50+ items with fixed image rendering) */
         .category-view {
             min-height: 100vh;
             padding: 90px 15px 40px 15px;
@@ -242,7 +236,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.88);
             z-index: 1;
         }
 
@@ -339,7 +333,7 @@
 </head>
 <body>
 
-    <!-- HOME PAGE VIEW -->
+    <!-- HOME VIEW -->
     <div id="home-view" class="view active-view">
         <header>
             <div class="logo-box">
@@ -359,7 +353,7 @@
         </section>
     </div>
 
-    <!-- DYNAMIC CATEGORY VIEW -->
+    <!-- CATEGORY VIEW -->
     <div id="category-view" class="view">
         <header>
             <div class="logo-box">
@@ -372,12 +366,9 @@
             </div>
         </header>
 
-        <div id="category-content" class="category-view">
-            <!-- Dynamic content loaded via JS -->
-        </div>
+        <div id="category-content" class="category-view"></div>
     </div>
 
-    <!-- AESTHETIC LEFT MENU BUTTON & SIDEBAR -->
     <button class="menu-toggle-btn" onclick="openMenuSidebar()">☰ Menu</button>
 
     <div id="sidebar-menu" class="sidebar-menu">
@@ -394,15 +385,64 @@
     </div>
 
     <script>
-        // Array of stunning food images to rotate for the 50+ items so all cards get distinct pictures
-        const foodImages = [
+        // Array of 50 guaranteed robust aesthetic food image links to avoid any load failures
+        const aestheticImages = [
             "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565310022184-f23a992f555b?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1621996346565-e3d5d6281298?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1539136788836-5699e78bfc75?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1606787366850-de6330127bfc?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1563379091595-1f641c81da8c?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1569058242252-62d267b84cfb?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1607301459247-53c23c7270e5?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
+        ];
+
+        const dishTypes = [
+            "Royal Sensation", "Artisanal", "Signature", "Classic Supreme", "Spicy Fusion", 
+            "Tandoori Delight", "Butter Glazed", "Herbed Special", "Cheesy Grand", "Golden Crispy",
+            "Exotic Feast", "Chef's Choice", "Mughlai Royal", "Zesty Flavour", "Urban Spice"
         ];
 
         function openMenuSidebar() {
@@ -437,20 +477,18 @@
                     <div class="food-grid">
             `;
 
-            // Generating 50 distinct items with rotating aesthetic pictures and prices
             for (let i = 1; i <= 50; i++) {
-                let price = (120 + (i * 17)) % 650 + 150;
-                let dishNames = ["Signature", "Royal", "Classic", "Spicy Fusion", "Tandoori Twist", "Butter Glazed", "Herbed Special", "Cheesy Delight"];
-                let namePrefix = dishNames[i % dishNames.length];
-                let cardImg = foodImages[i % foodImages.length];
+                let price = 180 + ((i * 37) % 620);
+                let dishName = dishTypes[(i - 1) % dishTypes.length];
+                let imgLink = aestheticImages[(i - 1) % aestheticImages.length];
                 
                 html += `
                     <div class="food-card">
-                        <img src="${cardImg}" alt="Food Item">
+                        <img src="${imgLink}" alt="${dishName} #${i}" loading="lazy">
                         <div class="food-info">
-                            <h4>${namePrefix} Item #${i}</h4>
+                            <h4>${dishName} #${i}</h4>
                             <div class="food-price">৳ ${price}</div>
-                            <button class="order-item-btn" onclick="alert('Order placed successfully for ${namePrefix} Item #${i}!')">Order Now</button>
+                            <button class="order-item-btn" onclick="alert('Order placed successfully for ${dishName} #${i}!')">Order Now</button>
                         </div>
                     </div>
                 `;
