@@ -375,8 +375,8 @@
         <button class="close-sidebar" onclick="closeMenuSidebar()">&times;</button>
         <h2>Our Gourmet Menu</h2>
         <ul class="menu-links-list">
-            <li><a href="#" onclick="loadCategory('Sambar Idli Variants', 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80')">1. Sambar Idli (50+ Variants)</a></li>
-            <li><a href="#" onclick="loadCategory('Podi Idli Specials', 'https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=1920&q=80')">2. Podi Idli Specials (50+ Variants)</a></li>
+            <li><a href="#" onclick="loadCategory('Sambar Idli Variants', 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1920&q=80')">1. Sambar Idli Specials</a></li>
+            <li><a href="#" onclick="loadCategory('Podi Idli Specials', 'https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=1920&q=80')">2. Podi Idli Specials</a></li>
             <li><a href="#" onclick="loadCategory('Royal Bowl’d Collection', 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=1920&q=80')">3. Royal Bowl’d Collection</a></li>
             <li><a href="#" onclick="loadCategory('Dunk’d Delicacies', 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1920&q=80')">4. Dunk’d Delicacies</a></li>
             <li><a href="#" onclick="loadCategory('Dailee Sides & Extras', 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1920&q=80')">5. Dailee Sides & Extras</a></li>
@@ -385,7 +385,7 @@
     </div>
 
     <script>
-        // Array of 50 guaranteed robust aesthetic food image links to avoid any load failures
+        // Array of 20 guaranteed robust aesthetic food image links
         const aestheticImages = [
             "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1514944298352-fff69f04e6a0?auto=format&fit=crop&w=600&q=80",
@@ -406,42 +406,12 @@
             "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
             "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1621996346565-e3d5d6281298?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1539136788836-5699e78bfc75?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1606787366850-de6330127bfc?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1563379091595-1f641c81da8c?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1569058242252-62d267b84cfb?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1607301459247-53c23c7270e5?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
+            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
         ];
 
         const dishTypes = [
-            "Royal Sensation", "Artisanal", "Signature", "Classic Supreme", "Spicy Fusion", 
-            "Tandoori Delight", "Butter Glazed", "Herbed Special", "Cheesy Grand", "Golden Crispy",
+            "Royal Sensation", "Artisanal Delight", "Signature Special", "Classic Supreme", "Spicy Fusion", 
+            "Tandoori Flavor", "Butter Glazed", "Herbed Special", "Cheesy Grand", "Golden Crispy",
             "Exotic Feast", "Chef's Choice", "Mughlai Royal", "Zesty Flavour", "Urban Spice"
         ];
 
@@ -473,12 +443,13 @@
                 <div class="category-container">
                     <button class="back-home-btn" onclick="goHome()">&larr; Back to Home</button>
                     <h2 class="category-title">${categoryName}</h2>
-                    <p class="category-subtitle">Explore our exclusive collection of over 50 freshly prepared artisanal variants.</p>
+                    <p class="category-subtitle">Explore our exclusive collection of 15 freshly prepared artisanal variants.</p>
                     <div class="food-grid">
             `;
 
-            for (let i = 1; i <= 50; i++) {
-                let price = 180 + ((i * 37) % 620);
+            // Exactly 15 items per category so images never run out or break
+            for (let i = 1; i <= 15; i++) {
+                let price = 180 + ((i * 37) % 450);
                 let dishName = dishTypes[(i - 1) % dishTypes.length];
                 let imgLink = aestheticImages[(i - 1) % aestheticImages.length];
                 
